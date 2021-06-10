@@ -36,3 +36,4 @@ legacy/err.egg-info/
 
 # tox
 .tox
+root_key
