@@ -33,3 +33,4 @@ nohup.out
 legacy/dist/
 legacy/err.egg-info/
 
+root_key
