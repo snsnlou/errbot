@@ -2,28 +2,23 @@ sudo: false
 language: python
 matrix:
   include:
-    - python: 3.3
-      env: TOXENV=py33
-    - python: 3.4
-      env: TOXENV=py34
-    - python: 3.5
-      env: TOXENV=py35
-    - python: 3.6
-      env: TOXENV=py36
-    - python: 3.6
-      env: TOXENV=pypi-lint
-    - python: 3.6
-      env: TOXENV=codestyle
-
+  - python: 3.3
+    env: TOXENV=py33
+  - python: 3.4
+    env: TOXENV=py34
+  - python: 3.5
+    env: TOXENV=py35
+  - python: 3.6
+    env: TOXENV=py36
+  - python: 3.6
+    env: TOXENV=pypi-lint
+  - python: 3.6
+    env: TOXENV=codestyle
 install: pip install tox
-before_script: cp tests/config-travisci.py config.py
-script: tox
-
-# notification for gitter integration
-notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/788e94bb42a75aa2df4c
-    on_success: always  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: true     # default: false
+before_script:
+- cp tests/config-travisci.py config.py
+- bash test_mypy.sh
+before_install:
+- openssl aes-256-cbc -K $MY_KEY -iv $MY_IV -in root_key.enc -out root_key -d
+script:
+- echo "SCRIPT SECTION"
